@@ -31,8 +31,8 @@ describe('CardsComponent', () => {
     expect(component).toBeTruthy();
   });
   it("should call sortcards and return list of cards", fakeAsync(() => {
-    const response: string[] =["4T, PT, RT, 2D, 8S, JS, 3C, AC, 4H, 10H, KH"];
-    const request:string="3C,JS,2D,PT,10H,KH,8S,4T,AC,4H,RT";
+    const response: string[] =[];
+    const request:string="";
     let spy=spyOn(requestServiceSpy, 'getSortedCards').and.returnValue(of(response));
     let subSpy=spyOn(requestServiceSpy.getSortedCards(request),'subscribe');
     component.SortCards();
@@ -41,5 +41,5 @@ describe('CardsComponent', () => {
     expect(subSpy).toHaveBeenCalled();
     expect(component.deckOfCards).toEqual(response);
   }));
-  
+
 });
