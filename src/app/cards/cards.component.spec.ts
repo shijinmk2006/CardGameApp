@@ -30,11 +30,15 @@ describe('CardsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("should call getUsers and return list of users", async(() => {
-    const response: string[] =[];
-    spyOn(requestServiceSpy, 'getSortedCards').and.returnValue(of(response))
+  it("should call sortcards and return list of cards", fakeAsync(() => {
+    const response: string[] =["4T, PT, RT, 2D, 8S, JS, 3C, AC, 4H, 10H, KH"];
+    const request:string="3C,JS,2D,PT,10H,KH,8S,4T,AC,4H,RT";
+    let spy=spyOn(requestServiceSpy, 'getSortedCards').and.returnValue(of(response));
+    let subSpy=spyOn(requestServiceSpy.getSortedCards(request),'subscribe');
     component.SortCards();
     fixture.detectChanges();
+    expect(spy).toHaveBeenCalledBefore(subSpy);
+    expect(subSpy).toHaveBeenCalled();
     expect(component.deckOfCards).toEqual(response);
   }));
   
