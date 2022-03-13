@@ -1,0 +1,24 @@
+
+ul{
+    list-style: none;
+}
+ul > li{
+    display:inline-block;
+}
+.rotate {
+    margin-left: 80px;
+   -webkit-transform: rotate(180deg);
+   -moz-transform: rotate(180deg);
+}
+.matcard-custom-title
+{
+    color: white;padding:0px 0px 20px 50px
+}
+.red-background
+{
+    background-color:darkred;
+}
+.green-background
+{
+    background-color:green;
+}

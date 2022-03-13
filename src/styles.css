@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+span{ display: block; }
+ 
+.outline{ width: 110px; border: 0px solid black; text-align: center; padding: 10px; margin: 10px; background: #FFF }
+.top{ text-align: left; }
+.bottom{ text-align: right; }
+ 
+.shadow{ box-shadow: 1px 1px 3px #000; -moz-box-shadow: 1px 1px 3px #000; -webkit-box-shadow: 1px 1px 3px #000; }
+.rounded{ border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+
