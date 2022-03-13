@@ -8,7 +8,7 @@ import { CardsComponent } from './cards.component';
 describe('CardsComponent', () => {
   let component: CardsComponent;
   let fixture: ComponentFixture<CardsComponent>;
-  let requestServiceSpy: jasmine.SpyObj<SharedService>;
+  let cardSharedService: jasmine.SpyObj<SharedService>;
 
 
   beforeEach(async () => {
@@ -24,22 +24,20 @@ describe('CardsComponent', () => {
     fixture = TestBed.createComponent(CardsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    requestServiceSpy=TestBed.get(SharedService);
+    cardSharedService=TestBed.get(SharedService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
   it("should call sortcards and return list of cards", fakeAsync(() => {
-    const response: string[] =[];
-    const request:string="";
-    let spy=spyOn(requestServiceSpy, 'getSortedCards').and.returnValue(of(response));
-    let subSpy=spyOn(requestServiceSpy.getSortedCards(request),'subscribe');
-    component.SortCards();
-    fixture.detectChanges();
-    expect(spy).toHaveBeenCalledBefore(subSpy);
-    expect(subSpy).toHaveBeenCalled();
-    expect(component.deckOfCards).toEqual(response);
+    const mockresponse: string[] =["3C","JS","2D","PT","10H","KH","8S","4T","AC","4H","RT"];
+    const requestParams:string="3C,JS,2D,PT,10H,KH,8S,4T,AC,4H,RT";
+    let response:string[]=[];
+    spyOn(cardSharedService,'getSortedCards').and.returnValue(of(mockresponse));
+    cardSharedService.getSortedCards(requestParams).subscribe(res=>{response=res});
+    expect(response).toEqual(mockresponse);
+    
   }));
 
 });
