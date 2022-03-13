@@ -22,7 +22,7 @@ export class CardsComponent {
   suitsList: Suit[] = [];
   suitValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
   specialList = ["T"];
-  specialSuitValues = ["S", "P", "R"];
+  specialSuitValues = ["4","2","S", "P", "R"];
   shuffledCards: Card[] = [];
   sortedCards: Card[] = [];
   showSorted: boolean = false;
