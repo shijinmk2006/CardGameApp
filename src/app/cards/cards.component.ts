@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/Model/Cards';
 import { Suit } from 'src/Model/Suit';
@@ -15,6 +15,17 @@ import { SharedService } from 'src/Services/shared.service';
         animate('3s ease-out', style({ opacity: '1' })),
       ]),
     ]),
+    trigger('listAnimation', [
+      transition('* <=> *', [
+        query(':enter',
+          [style({ opacity: 0 }), stagger('180ms', animate('600ms ease-out', style({ opacity: 1 })))],
+          { optional: true }
+        ),
+        query(':leave',
+          animate('200ms', style({ opacity: 0 })),
+          { optional: true }
+        )
+      ])]),
   ],
 })
 export class CardsComponent {
@@ -28,6 +39,7 @@ export class CardsComponent {
   showSorted: boolean = false;
   deckOfCards = new Array();
   numberofCards: number = 11;
+  items:any = [];
   constructor(private sharedService: SharedService) {
     this.suitsList = [
       new Suit("D", "&diams;", "Red"),
@@ -39,6 +51,7 @@ export class CardsComponent {
   shuffleCards() {
     this.showSorted = false;
     this.deckOfCards = [];
+    this.shuffledCards = [];
     this.addSuitList();
     this.addSpecialSuitList();
     this.selectShuffledCards();
@@ -82,7 +95,7 @@ export class CardsComponent {
       this.deckOfCards[i] = this.deckOfCards[j];
       this.deckOfCards[j] = temp;
     }
-    this.shuffledCards = [];
+   
     for (let i = 0; i < this.numberofCards; i++) {
       this.shuffledCards.push(this.deckOfCards[i])
     }

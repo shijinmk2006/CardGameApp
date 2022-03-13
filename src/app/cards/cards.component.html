@@ -11,7 +11,7 @@
   <div class="row" style="padding-top: 10px;" *ngIf="shuffledCards.length">
     <mat-card class="example-card green-background">
       <mat-card-title class="matcard-custom-title">Shuffled Cards</mat-card-title>
-      <ul>
+      <ul [@listAnimation]="shuffledCards.length">
         <li *ngFor="let item of shuffledCards" @fadeIn>
           <div class="outline shadow rounded">
             <div class="top">
@@ -41,7 +41,7 @@
     <div *ngIf="showSorted" style="padding-top: 10px;">
     <mat-card class="example-card red-background">
       <mat-card-title class="matcard-custom-title">Sorted Cards</mat-card-title>
-      <ul>
+      <ul [@listAnimation]="sortedCards.length">
         <li *ngFor="let item of sortedCards" @fadeIn>
           <div class="outline shadow rounded">
             <div class="top">

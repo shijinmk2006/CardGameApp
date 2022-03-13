@@ -51,6 +51,7 @@ describe('CardsComponent', () => {
     component.addSpecialSuitList();
     expect(component.deckOfCards.length).toEqual(5);
   });
+  
   it('should run the loop and push - shufflleCard', () => {
     component.suitsList = [
       new Suit("D", "&diams;", "Red"),
