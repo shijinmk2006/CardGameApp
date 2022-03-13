@@ -27,7 +27,7 @@ export class CardsComponent {
   sortedCards: Card[] = [];
   showSorted: boolean = false;
   deckOfCards = new Array();
-  numberofCards:number=14;
+  numberofCards: number = 11;
   constructor(private sharedService: SharedService) {
     this.suitsList = [
       new Suit("D", "&diams;", "Red"),
@@ -87,12 +87,11 @@ export class CardsComponent {
       this.shuffledCards.push(this.deckOfCards[i])
     }
   }
-  
+
   SortCards() {
-    let cardValues = this.shuffledCards.map(function (card: Card) 
-    { 
-         return card.namevalue;
-     }).join(",");
+    let cardValues = this.shuffledCards.map(function (card: Card) {
+      return card.namevalue;
+    }).join(",");
     this.sharedService.getSortedCards(JSON.stringify(cardValues)).subscribe(response => {
       this.showSorted = true;
       this.sortedCards = [];

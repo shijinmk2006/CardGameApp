@@ -30,6 +30,7 @@ describe('CardsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
   it("should call sortcards and return list of cards", fakeAsync(() => {
     const mockresponse: string[] =["3C","JS","2D","PT","10H","KH","8S","4T","AC","4H","RT"];
     const requestParams:string="3C,JS,2D,PT,10H,KH,8S,4T,AC,4H,RT";
