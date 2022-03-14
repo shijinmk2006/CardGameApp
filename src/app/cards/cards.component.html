@@ -1,13 +1,12 @@
-
-  <div class="container">
-    <div class="row">
-    <mat-card class="example-card" style="height: 70px;">
-      <div class="col-md-6" style="font-size: 16px;color:blue">Please click on the <strong>Shuffle Cards</strong> button to start the game</div>
-      <div class="col-md-6"><button class="btn btn-success" style="float: right;" type="button" (click)="shuffleCards()">Shuffle Cards</button></div>
-        
+<div class="container">
+  <div class="row">
+    <mat-card class="example-card" style="height: 75px;">
+      <div class="col-md-12" style="font-size: 16px;color:blue">Please click on the <strong>Shuffle Cards</strong>
+        button to start the game <button class="btn btn-success" style="float: right;" type="button"
+          (click)="shuffleCards()">Shuffle Cards</button></div>
     </mat-card>
-    </div>
-  
+  </div>
+
   <div class="row" style="padding-top: 10px;" *ngIf="shuffledCards.length">
     <mat-card class="example-card green-background">
       <mat-card-title class="matcard-custom-title">Shuffled Cards</mat-card-title>
@@ -16,18 +15,21 @@
           <div class="outline shadow rounded">
             <div class="top">
               <span style="font-weight: bold;" [style.color]="item.color?item.color:'Red'">{{item.value}}</span>
-              <span [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold" [style.color]="item.color"></span>
+              <span [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold"
+                [style.color]="item.color"></span>
             </div>
             <div *ngIf="item.color; else specialCard">
               <h1 [innerHTML]="item.icon" [style.color]="item.color"></h1>
-          </div>
-          <ng-template #specialCard>
-            <img src="assets/joker.png" width="47" height="47">
-          </ng-template>
-           
+            </div>
+            <ng-template #specialCard>
+              <img src="assets/joker.png" width="47" height="47">
+            </ng-template>
+
             <div class="bottom">
-              <span class="rotate" [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold;" [style.color]="item.color"></span>
-              <span class="rotate" style="font-weight: bold;" [style.color]="item.color?item.color:'Red'">{{item.value}}</span>
+              <span class="rotate" [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold;"
+                [style.color]="item.color"></span>
+              <span class="rotate" style="font-weight: bold;"
+                [style.color]="item.color?item.color:'Red'">{{item.value}}</span>
             </div>
           </div>
         </li>
@@ -39,31 +41,33 @@
       </div>
     </mat-card>
     <div *ngIf="showSorted" style="padding-top: 10px;">
-    <mat-card class="example-card red-background">
-      <mat-card-title class="matcard-custom-title">Sorted Cards</mat-card-title>
-      <ul [@listAnimation]="sortedCards.length">
-        <li *ngFor="let item of sortedCards" @fadeIn>
-          <div class="outline shadow rounded">
-            <div class="top">
-              <span style="font-weight: bold;" [style.color]="item.color?item.color:'Red'">{{item.value}}</span>
-              <span [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold" [style.color]="item.color"></span>
+      <mat-card class="example-card red-background">
+        <mat-card-title class="matcard-custom-title">Sorted Cards</mat-card-title>
+        <ul [@listAnimation]="sortedCards.length">
+          <li *ngFor="let item of sortedCards" @fadeIn>
+            <div class="outline shadow rounded">
+              <div class="top">
+                <span style="font-weight: bold;" [style.color]="item.color?item.color:'Red'">{{item.value}}</span>
+                <span [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold"
+                  [style.color]="item.color"></span>
+              </div>
+              <div *ngIf="item.color; else otherContent">
+                <h1 [innerHTML]="item.icon" [style.color]="item.color"></h1>
+              </div>
+              <ng-template #otherContent>
+                <img src="assets/joker.png" width="47" height="47">
+              </ng-template>
+
+              <div class="bottom">
+                <span class="rotate" [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold;"
+                  [style.color]="item.color"></span>
+                <span class="rotate" style="font-weight: bold;"
+                  [style.color]="item.color?item.color:'Red'">{{item.value}}</span>
+              </div>
             </div>
-            <div *ngIf="item.color; else otherContent">
-              <h1 [innerHTML]="item.icon" [style.color]="item.color"></h1>
-          </div>
-          <ng-template #otherContent>
-            <img src="assets/joker.png" width="47" height="47">
-          </ng-template>
-           
-            <div class="bottom">
-              <span class="rotate" [innerHTML]="item.icon?item.icon:item.name" style="font-weight: bold;" [style.color]="item.color"></span>
-              <span class="rotate" style="font-weight: bold;" [style.color]="item.color?item.color:'Red'">{{item.value}}</span>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </mat-card>
+          </li>
+        </ul>
+      </mat-card>
+    </div>
   </div>
-  </div>
-  </div>
-  
+</div>
