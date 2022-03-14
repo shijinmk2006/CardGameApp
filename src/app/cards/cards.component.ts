@@ -22,7 +22,7 @@ import { SharedService } from 'src/Services/shared.service';
           { optional: true }
         ),
         query(':leave',
-          animate('200ms', style({ opacity: 0 })),
+          animate('20ms', style({ opacity: 0 })),
           { optional: true }
         )
       ])]),
@@ -39,7 +39,6 @@ export class CardsComponent {
   showSorted: boolean = false;
   deckOfCards = new Array();
   numberofCards: number = 11;
-  items:any = [];
   constructor(private sharedService: SharedService) {
     this.suitsList = [
       new Suit("D", "&diams;", "Red"),
@@ -105,15 +104,20 @@ export class CardsComponent {
     let cardValues = this.shuffledCards.map(function (card: Card) {
       return card.namevalue;
     }).join(",");
-    this.sharedService.getSortedCards(JSON.stringify(cardValues)).subscribe(response => {
-      this.showSorted = true;
-      this.sortedCards = [];
-      for (var i = 0; i <= response?.length; i++) {
-        let item = this.shuffledCards.find((card: Card) => card.namevalue === response[i]);
-        if (item)
-          this.sortedCards.push(item);
-      }
-    });
+    this.sharedService.getSortedCards(JSON.stringify(cardValues)).subscribe({
+      next: (response) => {
+        this.showSorted = true;
+        this.sortedCards = [];
+        for (var i = 0; i <= response?.length; i++) {
+          let item = this.shuffledCards.find((card: Card) => card.namevalue === response[i]);
+          if (item)
+            this.sortedCards.push(item);
+        }
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
+     })
+
   }
 
 }
